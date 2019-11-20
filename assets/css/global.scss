@@ -1,0 +1,9 @@
+// assets/css/global.scss
+
+// customize some Bootstrap variables
+//$primary: rgb(44,50,34);
+$primary: green;
+$secondary : rgba(61,251,7,0.2);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap/scss/bootstrap";
