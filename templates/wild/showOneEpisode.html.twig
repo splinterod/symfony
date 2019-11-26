@@ -7,22 +7,25 @@
         <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}</h1>
-            <h2>Episodes of {{ program.title }} : Season {{ seasonId }} , {{ season.description }}</h2>
             <ul>
-                {% for episode in episodes %}
                     <div class="card m-4" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ episode.title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Episode #{{ episode.number }}</h6>
-                            <a href="{{  path('wild_showOneEpisode' , {'id': episode.id }) }}">Show details of episode</a>
+                            <p class="card-text"><strong>Synopsis: </strong>{{ episode.synopsis }}</p>
                         </div>
                     </div>
-                {% endfor %}
+
             </ul>
+
             <div>
-                <a href="{{ path('wild_showByProgram') ~ '/' ~ program.title|lower|replace({ " " :"-"}) }}">
+                <a href="{{ path('wild_showEpisode', {seasonId : episode.season.id })  }}">
                     Return to {{ program.title }} seasons
                 </a>
+                <br>
+{#                <a href="{{ path('wild_showByProgram', {slug: program.title|lower|replace({ " " :"-"})}, relative = false) }}">#}
+{#                    Return to {{ program.title }} seasons#}
+{#                </a>#}
             </div>
         </div>
 
