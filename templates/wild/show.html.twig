@@ -3,7 +3,7 @@
 {% block title %}{{ slug }}{% endblock %}
 
 {% block body %}
-<pre>{{ dump() }}</pre>
+
     <div class="media">
         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
@@ -13,8 +13,11 @@
         </div>
     </div>
 
-{#    <a href="{{ path('wild_index') }}">#}
-{#        Retour à l'accueil#}
-{#    </a>#}
+    <div>
+        <a href="{{ path('wild_show')  }}">
+            Return to all programs
+        </a>
+    </div>
+
 
 {% endblock %}

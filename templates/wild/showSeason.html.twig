@@ -12,14 +12,16 @@
             <p>{{ program.summary }}</p>
             <ul>
                 {% for season in seasons %}
-{#                    <pre>{{ dump(season) }}</pre>#}
-                    <li>season {{ loop.index }} : {{ season.description }} (year:{{ season.year }})</li>
+                    <li><a href="/wild/episodes/{{ season.id }}">season {{ loop.index }} </a>: {{ season.description }} (year:{{ season.year }})</li>
                 {% endfor %}
             </ul>
-
-
-
         </div>
+        <div>
+            <a href="{{ path('wild_index')  }}">
+                Return to all programs
+            </a>
+        </div>
+
     </div>
 
 {#    <a href="{{ path('wild_index') }}">#}
