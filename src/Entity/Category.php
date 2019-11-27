@@ -33,7 +33,7 @@ class Category
      * Category constructor.
      * @param $programs
      */
-    public function __construct($programs)
+    public function __construct()
     {
         $this->programs = new ArrayCollection();
     }

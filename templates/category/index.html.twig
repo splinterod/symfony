@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All programs{% endblock %}
+
+{#{% form_theme form 'bootstrap_4_layout.html.twig' %}#}
+
+{% block body %}
+
+    <h1>Add a new category</h1>
+
+    <div class="container">
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.name) }}
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+
+    {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+
+
+
