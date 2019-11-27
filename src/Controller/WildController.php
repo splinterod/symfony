@@ -8,8 +8,10 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Category;
 use App\Entity\Season;
+use App\Form\CategoryType;
+use App\Form\ProgramSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Tests\Compiler\C;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,8 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
  *
  * @Route("/wild", name="wild_")
  */
-
-
 class WildController extends AbstractController
 {
 
@@ -26,10 +26,13 @@ class WildController extends AbstractController
      * show all rows for Program's entity
      *
      * @Route("", name="index")
-     *  @return Response
+     * @return Response A response instance
      */
     public function index(): Response
     {
+
+
+
         $programs = $this->getDoctrine()
             ->getRepository(Program::class)
             ->findAll();
@@ -41,7 +44,9 @@ class WildController extends AbstractController
         }
 
         return $this->render('wild/index.html.twig', [
-            'programs' => $programs
+            'programs' => $programs,
+
+
         ]);
     }
 
