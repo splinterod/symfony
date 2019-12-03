@@ -47,7 +47,7 @@ class WildController extends AbstractController
      ** Getting a program with a formatted slug for title
      *
      * @param string $slug The slugger
-     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show")
+     * @Route("/show/{slug}", defaults={"slug" = null}, name="show")
      * @return Response
      */
     public function show(string $slug = ""): Response
@@ -205,7 +205,7 @@ class WildController extends AbstractController
      ** Getting an episode with this id
      *
      * @param int $id episode
-     * @Route("/episode/{id}", defaults={"id" = null}, name="showOneEpisode")
+     * @Route("/episode/{slug}", defaults={"id" = null}, name="showOneEpisode")
      * @return Response
      */
 
