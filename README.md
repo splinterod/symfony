@@ -8,3 +8,5 @@ lien video quete 13: https://drive.google.com/file/d/19DTLZuw8ciOcHByRt0eZFCrnuY
 lien video quete 14 :https://drive.google.com/file/d/19DTLZuw8ciOcHByRt0eZFCrnuYQ-oZC2/view?usp=sharing
 
 lien video quete 15: https://drive.google.com/file/d/1aq4Ffr5Kk2HPSBqT6QKNpSuO4rQSf5xx/view?usp=sharing
+
+lien video quete 16: https://drive.google.com/file/d/18cz_5-u4TMklZM8soOF71os-ePHHnFqb/view?usp=sharing
