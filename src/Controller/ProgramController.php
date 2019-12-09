@@ -31,6 +31,7 @@ class ProgramController extends AbstractController
 
     /**
      * @Route("/new", name="program_new", methods={"GET","POST"})
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function new(Request $request, Slugify $slugify, MailerInterface $mailer): Response
     {
@@ -78,7 +79,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="program_edit", methods={"GET","POST"})
+     * @Route("/edit/{slug}", name="program_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Program $program): Response
     {

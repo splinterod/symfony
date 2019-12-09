@@ -1,34 +1,91 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Episode{% endblock %}
 
 {% block body %}
-    <h1>Episode</h1>
+    <div class="container">
+        <div class="row mt-4 mb-4">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ episode.title }}</td>
-            </tr>
-            <tr>
-                <th>Number</th>
-                <td>{{ episode.number }}</td>
-            </tr>
-            <tr>
-                <th>Synopsis</th>
-                <td>{{ episode.synopsis }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <h4 class="col-4">Episode #{{ episode.number }} de {{ episode.season.program.title }} </h4>
+            <div class="col-2">
+                <form action="{{ path('season_show', {'slug': episode.season.slug}) }}">
+                    <button type="submit" class="btn btn-primary">Back to season</button>
+                </form>
+            </div>
+            <div class="col-2">
+                <form action="{{ path('episode_edit', {'slug': episode.slug}) }}">
+                    <button type="submit" class="btn btn-primary">Editez moi!</button>
+                </form>
+            </div>
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+            <div class="col-1">
+                {{ include('episode/_delete_form.html.twig') }}
+            </div>
 
-    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
 
-    {{ include('episode/_delete_form.html.twig') }}
+        </div>
+
+        <div class="row">
+            <h3 class="col-12 mt-4"><strong>Synopsis:</strong></h3>
+            <div class="col-12">{{ episode.synopsis }}</div>
+        </div>
+
+        <div class="row">
+            <h3 class="col-12 mt-5"><strong>Dude's comment:</strong></h3>
+        </div>
+
+{#        //tableau des commentaires#}
+        <div class="row">
+            <table class="table">
+                <tr>
+                    <th style="width:80%;">Commentaires</th>
+                    <th style="width:10%;">Notation</th>
+                    <th style="width:10%;">User</th>
+                </tr>
+                <tbody>
+            {% for comment in episode.comments|reverse %}
+                    <tr>
+                        <td>{{ comment.comment }}</td>
+                        <td>{{ comment.rate }}</td>
+                        <td>{{ comment.user.username }}</td>
+
+                    </tr>
+            {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="row">
+        {% if app.user %}
+             <button onclick="myFunction()" class="btn btn-primary text-white"> Add a comment</button>
+        {% endif %}
+    </div>
+        <div class="container mt-4">
+{#        //add comments if clis on add comment #}
+        <div class="row" id="addComment" style="display:none">
+
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+function myFunction() {
+    var x = document.getElementById("addComment");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
 {% endblock %}

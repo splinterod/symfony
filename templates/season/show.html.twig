@@ -3,28 +3,75 @@
 {% block title %}Season{% endblock %}
 
 {% block body %}
-    <h1>Season</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ season.id }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ season.year }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ season.description }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('season_index') }}">back to list</a>
+    <div class="container">
+        <div class="row mt-4 mb-4">
+            <h4>Season {{ season.year }} de {{ season.program.title }} </h4>
 
-    <a href="{{ path('season_edit', {'slug': season.slug}) }}">edit</a>
 
-    {{ include('season/_delete_form.html.twig') }}
+            <div class="col-2">
+                <form action="{{ path('program_show', {'slug': season.program.slug}) }}">
+                    <button type="submit" class="btn btn-primary">Back to program</button>
+                </form>
+            </div>
+
+
+            <div class="col-2">
+                <form action="{{ path('season_edit', {'slug': season.slug}) }}">
+                    <button type="submit" class="btn btn-primary">Editez moi!</button>
+                </form>
+            </div>
+
+            <div class="col-1">
+                {{ include('season/_delete_form.html.twig') }}
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-4">
+                <img src="{{ season.program.poster }}" class="img-thumbnail" style="max-width:40%">
+            </div>
+
+            <div class="col-8">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ season.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year</th>
+                        <td>{{ season.year }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ season.description }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+{#        //display des eéposiodes#}
+        <div class="row">
+            <h3>Listes des épisodes de cette saison:</h3>
+        </div>
+        <div class="row">
+            {% for episode in season.episodes %}
+
+                <ul>
+                    <li><a href="{{ path('episode_show', {'slug': episode.slug }) }}">Episode #{{ episode.number }}: <strong>{{ episode.title }}</strong></a><br>
+                    {{ episode.synopsis }}
+                    </li>
+                </ul>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+
 {% endblock %}
