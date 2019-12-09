@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+{% apply inline_css(source('@css/app.css')) %}
+<body class="bg-secondary">
+
+{% block body %}
+    <h3>Hey Dude</h3>
+
+    <p>Et hop une série rien pour que pour toi mon gars!!</p>
+    <P>Et c'est ....</P>
+
+    <h1>{{ program.title}}</h1>
+    <a href={{  "http://127.0.0.1:8000/program/"~program.slug }}>Accède direct au programme</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+{% endapply %}
+</body>
+
+
+</html>
