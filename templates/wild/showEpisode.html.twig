@@ -14,7 +14,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ episode.title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Episode #{{ episode.number }}</h6>
-                            <a href="{{  path('wild_showOneEpisode' , {'id': episode.id }) }}">Show details of episode</a>
+                            <a href="{{  path('wild_showOneEpisode' , {'slug': episode.slug }) }}">Show details of episode</a>
                         </div>
                     </div>
                 {% endfor %}

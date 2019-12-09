@@ -5,31 +5,41 @@
 {% block body %}
 
     <div class="container">
+        <div class="row mt-4">
+            <h1 class="col-6">{{ program.title }}</h1>
+            <div class="col-2 offset-2">
+                <form action="{{ path('program_edit', {'slug': program.slug}) }}">
+                    <button type="submit" class="btn btn-primary">Editez moi!</button>
+                </form>
+            </div>
+
+            <div class="col-2">
+                {{ include('program/_delete_form.html.twig') }}
+            </div>
+        </div>
+
         <div class="row">
-            <h1>Program</h1>
+            <div class="col-4">
+                <img src="{{ program.poster }}" class="img-thumbnail">
+            </div>
 
-            <table class="table">
-                <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ program.id }}</td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>{{ program.title }}</td>
-                </tr>
-                <tr>
-                    <th>Summary</th>
-                    <td>{{ program.summary }}</td>
-                </tr>
-                <tr>
-                    <th>Poster</th>
-                    <td>{{ program.poster }}</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div>
+            <div class="col-8">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ program.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Title</th>
+                        <td>{{ program.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Summary</th>
+                        <td>{{ program.summary }}</td>
+                    </tr>
+                    </tbody>
+                </table>
                 <strong>Acteur :</strong>
                 <ul>
                     {% for actor in program.actors %}
@@ -39,25 +49,22 @@
                     {% endfor %}
                 </ul>
             </div>
+        </div>
 
-            <div>
-                <strong>Season :</strong>
+        <div class="row">
+            <strong class="m-4">Accéder aux différentes saisons de {{ program.title }}:</strong>
 
-                <ul>
-                    {% for season in program.seasons %}
-                        <li><a href="{{ path('season_show', {'slug': season.slug }) }}">{{ season.year }}</a>
-                            :{{ season.description }}</li>
-                    {% else %}
-                        <li>Aucun acteur pour cette série</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <ul class="list-group bg-primary">
+                {% for season in program.seasons %}
+                    <li class="list-group-item" ><a href="{{ path('season_show', {'slug': season.slug }) }}"> Saison :{{ season.year }}</a>
+                        :{{ season.description }}</li>
+                {% else %}
+                    <li>Aucun saisons pour cette série</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-    <div class="container">
-        <a href="{{ path('program_edit', {'slug': program.slug}) }}" class="btn btn-primary stretched-link">edit</a>
-    </div>
-    <div class="container mt-4">
-        {{ include('program/_delete_form.html.twig') }}
-    </div>
+
+
+
 {% endblock %}
