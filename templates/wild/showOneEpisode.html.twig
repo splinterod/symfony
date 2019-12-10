@@ -3,8 +3,9 @@
 {% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
+    <div class="container mt-4">
     <div class="media">
-        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster" style="max-width:30%">
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}: Season {{ season.id }}</h1>
             <ul>
@@ -32,6 +33,70 @@
 
     </div>
 
+    {#        //tableau des commentaires#}
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th style="width:70%;">Commentaires</th>
+                <th style="width:10%;">Notation</th>
+                <th style="width:10%;">User</th>
+                <th style="width:10%;">Delete</th>
 
 
+            </tr>
+            <tbody>
+            {% for comment in episode.comments|reverse %}
+                <tr>
+                    <td>{{ comment.comment }}</td>
+                    <td>{{ comment.rate }}</td>
+                    <td>{{ comment.user.username }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ include('comment/_delete_form.html.twig') }}</td>
+                    {% else %}
+                        {% if is_granted('ROLE_SUBSCRIBER') %}
+                            {% if user.id ==  comment.user.id %}
+                                <td>{{ include('comment/_delete_form.html.twig') }}</td>
+                            {% endif %}
+                        {% else %}
+                            <td>non rien de rien</td>
+                        {% endif %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="row">
+        {% if app.user %}
+            <button onclick="myFunction()" class="btn btn-primary text-white"> Add a comment</button>
+        {% endif %}
+    </div>
+    <div class="container mt-4">
+        {#        //add comments if clis on add comment #}
+        <div class="row" id="addComment" style="display:none">
+
+            {{ form_start(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+function myFunction() {
+    var x = document.getElementById("addComment");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
 {% endblock %}

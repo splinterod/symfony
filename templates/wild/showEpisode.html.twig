@@ -3,32 +3,35 @@
 {% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
-    <div class="media">
-        <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
-        <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
-            <h2>Episodes of {{ program.title }} : Season {{ season.description }}</h2>
-            <ul>
-                {% for episode in episodes %}
-                    <div class="card m-4" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ episode.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Episode #{{ episode.number }}</h6>
-                            <a href="{{  path('wild_showOneEpisode' , {'slug': episode.slug }) }}">Show details of episode</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </ul>
-            <div>
-                <a href="{{ path('wild_showByProgram') ~ '/' ~ program.title|lower|replace({ " " :"-"}) }}">
-                    Return to {{ program.title }} seasons
-                </a>
+    <div class="container">
+        <div class="row">
+            <a href="{{ path('wild_showByProgram') ~ '/' ~ program.title|lower|replace({ " " :"-"}) }}">
+                Return to {{ program.title }} seasons
+            </a>
+        </div>
+        <div class="row">
+            <div class="media">
+                <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster" style="max-width: 20%">
+                <div class="media-body">
+                    <h1 class="mt-0">{{ program.title }}</h1>
+                    <h2>Episodes of {{ program.title }} : Season {{ season.description }}</h2>
+                    <ul>
+                        {% for episode in episodes %}
+                            <div class="card m-4" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ episode.title }}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Episode #{{ episode.number }}</h6>
+                                    <a href="{{ path('wild_showOneEpisode' , {'slug': episode.slug }) }}">Show details
+                                        of
+                                        episode</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-
-
     </div>
-
 
 
 {% endblock %}
