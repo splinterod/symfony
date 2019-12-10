@@ -1,4 +1,8 @@
 security:
+    role_hierarchy:
+        ROLE_SUBSCRIBER: IS_AUTHENTICATED_ANONYMOUSLY
+        ROLE_ADMIN:  ROLE_SUBSCRIBER
+
     encoders:
         App\Entity\User:
             algorithm: auto
@@ -23,7 +27,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                target: program_index
+                target: wild_index
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -35,5 +39,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/wild, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/program, roles: ROLE_ADMIN }
+        - { path: ^/season, roles: ROLE_ADMIN }
+        - { path: ^/episode, roles: ROLE_ADMIN }
+        - { path: ^/actor, roles: ROLE_ADMIN }
+        - { path: ^/category, roles: ROLE_ADMIN }
