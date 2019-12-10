@@ -13,3 +13,5 @@ lien video quete 16: https://drive.google.com/file/d/18cz_5-u4TMklZM8soOF71os-eP
 
 lien video quete17: https://drive.google.com/file/d/1k4cQQV1gbpHQJKDFDeZxPSZsAe1MwfKF/view?usp=sharing
 lien video qute 18: https://drive.google.com/file/d/1HR9qspN8Z-EjTIWydn9H2_L7qtUxcIUo/view?usp=sharing
+
+lien video quete19:https://drive.google.com/file/d/1AJwEqPxhaao3Om8OxDhxP0OoYXGIR2LP/view?usp=sharing
