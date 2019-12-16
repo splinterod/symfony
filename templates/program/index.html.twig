@@ -20,6 +20,7 @@
                         <th>Id</th>
                         <th>Title</th>
                         <th>Summary</th>
+                        <th>Actors</th>
                         <th>actions</th>
                     </tr>
                     </thead>
@@ -31,6 +32,13 @@
                             <td>{{ program.id }}</td>
                             <td>{{ program.title }}</td>
                             <td>{{ program.summary }}</td>
+                            <td>
+                                {% for actor in program.actors %}
+                                    <ul>
+                                        <li><a href="{{ path('actor_show', {'slug':actor.slug })}}">{{ actor.name }}</a></li>
+                                    </ul>
+                                {% endfor %}
+                            </td>
                             <td>
                                 <a href="{{ path('program_show', {'slug': program.slug}) }}">show</a>
                                 <a href="{{ path('program_edit', {'slug': program.slug}) }}">edit</a>

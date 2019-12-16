@@ -4,21 +4,16 @@
 
 {% block body %}
 
-
 <div class="container mt-2">
     <h1>Toutes les séries de la table program : </h1>
     {% for program in programs %}
         <div>
             <h2>{{ loop.index }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
             <p>{{ program.summary }}</p>
-            <a href="{{ path('wild_showByProgram') ~ '/' ~ program.title|lower|replace({ " " :"-"}) }}">Discover all seasons of {{ program.title }}</a>
+            <a href="{{ path('wild_showByProgram') ~ '/' ~ program.slug }}">Discover all seasons of {{ program.title }}</a>
         </div>
     {% else %}
         Aucune série trouvée.
     {% endfor %}
 </div
 {% endblock %}
-
-
-
-

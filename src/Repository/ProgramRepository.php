@@ -19,22 +19,50 @@ class ProgramRepository extends ServiceEntityRepository
         parent::__construct($registry, Program::class);
     }
 
-    // /**
-    //  * @return Program[] Returns an array of Program objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Program[] Returns an array of Program objects
+     */
+
+//    public function findByExampleField($value)
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->andWhere('p.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->orderBy('p.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
+
+    /**
+     * @return Program[] Returns an array of Program objects
+     */
+
+    public function findAllWithCategories()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('p')
+            ->innerJoin('p.category', 'c' )
+            ->addSelect('c')
+            ->getQuery();
+
+        return $qb->execute();
     }
-    */
+
+    /**
+     * @return Program[] Returns an array of Program objects
+     */
+
+    public function findAllWithActors()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->innerJoin('p.actors', 'a' )
+            ->addSelect('a')
+            ->getQuery();
+
+        return $qb->execute();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Program
